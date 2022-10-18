@@ -11,7 +11,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-# Windows
+### Windows
 ```
 .venv\Scripts\activate
 ```
