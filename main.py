@@ -12,7 +12,7 @@ WHITE = (255, 255, 255)
 
 fps = 60
 clock = pygame.time.Clock()
-geschw = 3
+geschw = 1
 player_pos_x = 380
 player_pos_y = 230
 
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             if border(player_pos_y, -1):
                 player_pos_y += geschw
         if gedrueckt[pygame.K_LEFT]:
-            if border(player_pos_y, -1):
+            if border(player_pos_x, -1):
                 player_pos_x -= geschw
         
         DISPLAYSURF.fill(color=WHITE)
