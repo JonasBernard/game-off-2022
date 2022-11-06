@@ -25,7 +25,7 @@ def draw_map():
     pygame.draw.rect(DISPLAYSURF, BLACK, (400, 30, 20, 70), 40, 0)
 
 def border_tb(pp, direction):
-    if pp + direction <= -1 or pp + direction >= 480:
+    if pp + direction <= -3 or pp + direction >= 480:
         return False
     else:
         return True
@@ -67,10 +67,10 @@ if __name__ == '__main__':
         DISPLAYSURF.fill(color=WHITE)
 
         pygame.draw.rect(DISPLAYSURF, BLACK, (player_pos_x, player_pos_y, 20, 20), 40, 0)
-
+        # pygame.image.
         draw_map()
 
         pygame.display.flip()
         clock.tick(fps)
-
+        print(player_pos_x, player_pos_y)
         pygame.display.update()
