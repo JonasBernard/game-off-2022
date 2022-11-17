@@ -1,6 +1,8 @@
 import pygame, sys
 from pygame.locals import *
 from class_player import Player
+from menu.menu import MainMenu
+from render_options import fps, clock
 
 pygame.init()
 
@@ -8,12 +10,9 @@ DISPLAYSURF = pygame.display.set_mode((800, 500))
 pygame.display.set_caption('Éscape')
 
 
-
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
-fps = 60
-clock = pygame.time.Clock()
 geschw = 3
 player_pos_x = 380
 player_pos_y = 230
@@ -45,16 +44,11 @@ def border_lr(pp, direction):
     # else:
     #     return False
 
-
-
-if __name__ == '__main__':
-
-    player = Player(380, 230)
-    moving_sprites = pygame.sprite.Group()
-    moving_sprites.add(player)
-
+def main_game():
     while True:
-        for event in pygame.event.get():
+        events = pygame.event.get()
+
+        for event in events:
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
@@ -91,3 +85,14 @@ if __name__ == '__main__':
         clock.tick(fps)
         # print(player_pos_x, player_pos_y)
         pygame.display.update()
+
+
+if __name__ == '__main__':
+    player = Player(380, 230)
+    moving_sprites = pygame.sprite.Group()
+    moving_sprites.add(player)
+    
+    menu = MainMenu()
+    menu.init(DISPLAYSURF, main_game)
+
+    menu.menu_loop()
