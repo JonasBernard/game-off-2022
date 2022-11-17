@@ -3,15 +3,13 @@ from pygame.locals import *
 from class_player import Player
 from menu.menu import MainMenu
 from render_options import fps, clock
+from constants.colors import WHITE, BLACK
 
 pygame.init()
 
 DISPLAYSURF = pygame.display.set_mode((800, 500))
 pygame.display.set_caption('Éscape')
 
-
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
 
 geschw = 3
 player_pos_x = 380
