@@ -1,19 +1,13 @@
-import pygame, sys
+import pygame
 from pygame.locals import *
-from class_player import Player
+from player.player import Player
 from menu.menu import MainMenu
-from render_options import fps, clock
-from constants.colors import WHITE, BLACK
+from game.mainloop import MainLoop
 
 pygame.init()
 
-DISPLAYSURF = pygame.display.set_mode((800, 500))
+DISPLAYSURF = pygame.display.set_mode((1200, 800))
 pygame.display.set_caption('Éscape')
-
-
-geschw = 3
-player_pos_x = 380
-player_pos_y = 230
 
 
 class Map():
@@ -42,55 +36,15 @@ def border_lr(pp, direction):
     # else:
     #     return False
 
-def main_game():
-    while True:
-        events = pygame.event.get()
-
-        for event in events:
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-
-        gedrueckt = pygame.key.get_pressed()
-        if gedrueckt[pygame.K_UP]:
-            # if border_tb(player.pos_y, 3):
-            #     player.pos_y += geschw
-            player.move_up(geschw)
-            player.update_view(1)
-        if gedrueckt[pygame.K_RIGHT]:
-            # if border_lr(player.pos_x, 3):
-            #     player.pos_x += geschw
-            player.move_right(geschw)
-            player.update_view(2)
-        if gedrueckt[pygame.K_DOWN]:
-            # if border_tb(player.pos_y, -3):
-            #     player.pos_y += geschw
-            player.move_down(geschw)
-            player.update_view(0)
-        if gedrueckt[pygame.K_LEFT]:
-            # if border_lr(player.pos_x, -3):
-            #     player.pos_x -= geschw
-            player.move_left(geschw)
-            player.update_view(3)
-        
-        DISPLAYSURF.fill(color=WHITE)
-
-        moving_sprites.draw(DISPLAYSURF)
-        # pygame.image.
-        # draw_map()
-
-        pygame.display.flip()
-        clock.tick(fps)
-        # print(player_pos_x, player_pos_y)
-        pygame.display.update()
-
 
 if __name__ == '__main__':
     player = Player(380, 230)
     moving_sprites = pygame.sprite.Group()
     moving_sprites.add(player)
     
+    main_game_loop = MainLoop(player, DISPLAYSURF, moving_sprites)
+
     menu = MainMenu()
-    menu.init(DISPLAYSURF, main_game)
+    menu.init(DISPLAYSURF, main_game_loop.main_game)
 
     menu.menu_loop()

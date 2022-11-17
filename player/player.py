@@ -1,14 +1,15 @@
 import pygame, sys
 from pygame.locals import *
+from game.imageimporter import importimage as load
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y):
         super().__init__()
         self.sprite = []
-        self.sprite.append(pygame.image.load(r'assets/character/front.png'))
-        self.sprite.append(pygame.image.load(r'assets/character/back.png'))
-        self.sprite.append(pygame.image.load(r'assets/character/left.png'))
-        self.sprite.append(pygame.image.load(r'assets/character/right.png'))
+        self.sprite.append(load('assets/character/front.png'))
+        self.sprite.append(load('assets/character/back.png'))
+        self.sprite.append(load('assets/character/left.png'))
+        self.sprite.append(load('assets/character/right.png'))
         self.current_sprite = 0
         self.image = self.sprite[self.current_sprite]
 
